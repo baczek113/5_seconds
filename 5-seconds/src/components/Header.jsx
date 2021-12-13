@@ -1,22 +1,27 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Navbar, Container, Nav, NavDropdown} from 'react-bootstrap/'
 
-export default function header(){
+export default function Header(){
+    let [gameState, setGameState] = useState('mainPage');
     return(
         <div>
-            <Navbar bg="light" expand="lg">
+            <Navbar bg="light" expand="lg" style={{height: '70px'}}>
                 <Container>
-                    <Navbar.Brand><h1>5 seconds</h1></Navbar.Brand>
+                    <Navbar.Brand style={{marginRight: '40px'}}><h1>5 seconds</h1></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#home" style ={{fontSize: 15}}>Home</Nav.Link>
-                            <NavDropdown title="Start game" id="basic-nav-dropdown" style = {{fontSize: 25}}>
-                                <NavDropdown.Item>2 Players</NavDropdown.Item>
-                                <NavDropdown.Item>3 Players</NavDropdown.Item>
-                                <NavDropdown.Item>4 Players</NavDropdown.Item>
-                                <NavDropdown.Item>5 Players</NavDropdown.Item>
-                            </NavDropdown>
+                            <Nav.Link style ={{fontSize: 20}}>Home</Nav.Link>
+                            <Nav.Link style={{fontSize: 20, marginLeft: '10px', marginRight:'10px'}}>Rules</Nav.Link>
+                            {(gameState=="mainPage")?
+                            <NavDropdown title="Start game" id="basic-nav-dropdown" style = {{fontSize: 40, marginLeft:'185px'}}>
+                                <NavDropdown.Item onClick={() => setGameState('2Players')}>2 Players</NavDropdown.Item>
+                                <NavDropdown.Item onClick={() => setGameState('3Players')}>3 Players</NavDropdown.Item>
+                                <NavDropdown.Item onClick={() => setGameState('4Players')}>4 Players</NavDropdown.Item>
+                                <NavDropdown.Item onClick={() => setGameState('5Players')}>5 Players</NavDropdown.Item>
+                            </NavDropdown>:
+                            <Nav.Link style={{fontSize: 40, marginLeft:'185px'}} onClick={()=>setGameState('mainPage')}><h1>End Game</h1></Nav.Link>
+                            }
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
