@@ -1,9 +1,18 @@
 import React, {useState} from 'react'
-import {Card} from 'react-bootstrap/'
+import {Card, Form, Button} from 'react-bootstrap/'
 
 export default function MainPage(props){
-    if(props.gameState=='mainPage')
-    {
+    let players = []
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        for(let i = 0; parseInt(props.gameState.substring(0, 1))>i; i++)
+        {
+            players.push([0,event.target[i].value])
+        } 
+        console.log(players)
+    }
+    switch(props.gameState){
+    case 'mainPage':
     return(
         <div>
             <div style={{width:'100%', height:'160px', float:'left'}}></div>
@@ -20,11 +29,105 @@ export default function MainPage(props){
             </Card>
           </div>
         );
-    }
-    else
-    {
-        return(
-            <p class = 'fw-bolder'>tera ingame</p>
-        );
+    case '2Players':
+    return(
+        <div style = {{marginTop: '150px', float: 'left', width: '30%', marginLeft: '35%'}}>
+            <h2 class = 'fw-bolder'>Ustal nazwy graczy: </h2>
+            <Form onSubmit={handleSubmit}>
+                <Form.Group className='mb-3' controlId='formBasicEmail'>
+                    <Form.Label>Gracz 1:</Form.Label>
+                    <Form.Control  placeholder='Wpisz nazwe' />
+                </Form.Group>
+                <Form.Group className='mb-3' >
+                    <Form.Label>Gracz 2:</Form.Label>
+                    <Form.Control  placeholder='Wpisz nazwe' />
+                </Form.Group>
+                <Button variant='primary' type='submit'>
+                    Rozpocznij grę
+                </Button>
+            </Form>
+        </div>
+    );
+    case '3Players':
+    return(
+        <div style = {{marginTop: '150px', float: 'left', width: '30%', marginLeft: '35%'}}>
+            <h2 class = 'fw-bolder'>Ustal nazwy graczy: </h2>
+            <Form onSubmit={handleSubmit}>
+                <Form.Group className='mb-3' controlId='formBasicEmail'>
+                    <Form.Label>Gracz 1:</Form.Label>
+                    <Form.Control  placeholder='Wpisz nazwe' />
+                </Form.Group>
+                <Form.Group className='mb-3' >
+                    <Form.Label>Gracz 2:</Form.Label>
+                    <Form.Control  placeholder='Wpisz nazwe' />
+                </Form.Group>
+                <Form.Group className='mb-3' >
+                    <Form.Label>Gracz 3:</Form.Label>
+                    <Form.Control  placeholder='Wpisz nazwe' />
+                </Form.Group>
+                <Button variant='primary' type='submit'>
+                    Rozpocznij grę
+                </Button>
+            </Form>
+        </div>
+    );
+    case '4Players':
+    return(
+        <div style = {{marginTop: '150px', float: 'left', width: '30%', marginLeft: '35%'}}>
+            <h2 class = 'fw-bolder'>Ustal nazwy graczy: </h2>
+            <Form onSubmit={handleSubmit}>
+                <Form.Group className='mb-3' controlId='formBasicEmail'>
+                    <Form.Label>Gracz 1:</Form.Label>
+                    <Form.Control  placeholder='Wpisz nazwe' />
+                </Form.Group>
+                <Form.Group className='mb-3' >
+                    <Form.Label>Gracz 2:</Form.Label>
+                    <Form.Control  placeholder='Wpisz nazwe' />
+                </Form.Group>
+                <Form.Group className='mb-3' >
+                    <Form.Label>Gracz 3:</Form.Label>
+                    <Form.Control  placeholder='Wpisz nazwe' />
+                </Form.Group>
+                <Form.Group className='mb-3' >
+                    <Form.Label>Gracz 4:</Form.Label>
+                    <Form.Control  placeholder='Wpisz nazwe' />
+                </Form.Group>
+                <Button variant='primary' type='submit'>
+                    Rozpocznij grę
+                </Button>
+            </Form>
+        </div>
+    );
+    case '5Players':
+    return(
+        <div style = {{marginTop: '150px', float: 'left', width: '30%', marginLeft: '35%'}}>
+            <h2 class = 'fw-bolder'>Ustal nazwy graczy: </h2>
+            <Form onSubmit={handleSubmit}>
+                <Form.Group className='mb-3' controlId='formBasicEmail'>
+                    <Form.Label>Gracz 1:</Form.Label>
+                    <Form.Control  placeholder='Wpisz nazwe' />
+                </Form.Group>
+                <Form.Group className='mb-3' >
+                    <Form.Label>Gracz 2:</Form.Label>
+                    <Form.Control  placeholder='Wpisz nazwe' />
+                </Form.Group>
+                <Form.Group className='mb-3' >
+                    <Form.Label>Gracz 3:</Form.Label>
+                    <Form.Control  placeholder='Wpisz nazwe' />
+                </Form.Group>
+                <Form.Group className='mb-3' >
+                    <Form.Label>Gracz 4:</Form.Label>
+                    <Form.Control  placeholder='Wpisz nazwe' />
+                </Form.Group>
+                <Form.Group className='mb-3' >
+                    <Form.Label>Gracz 5:</Form.Label>
+                    <Form.Control  placeholder='Wpisz nazwe' />
+                </Form.Group>
+                <Button variant='primary' type='submit'>
+                    Rozpocznij grę
+                </Button>
+            </Form>
+        </div>
+    );
     }
 }

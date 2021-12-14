@@ -12,7 +12,7 @@ export default function Header(props){
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link style ={{fontSize: 20, marginTop: '15px'}} onClick={()=>props.setGameState('mainPage')}>Home</Nav.Link>
-                            {(props.gameState=="mainPage")?
+                            {(props.gameState==="mainPage")?
                             <NavDropdown title="Rozpocznij gre" id="basic-nav-dropdown" style = {{fontSize: 40, marginLeft:'220px'}}>
                                 <NavDropdown.Item onClick={() => props.setGameState('2Players')}>2 Graczy</NavDropdown.Item>
                                 <NavDropdown.Item onClick={() => props.setGameState('3Players')}>3 Graczy</NavDropdown.Item>
