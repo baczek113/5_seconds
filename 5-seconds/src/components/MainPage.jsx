@@ -1,17 +1,19 @@
 import React, {useState} from 'react'
 import {Card, Form, Button} from 'react-bootstrap/'
+import InGamePage from './InGamePage'
 
-export default function MainPage(props){
-    let players = []
+export default function MainPage({ gameState, setGameState, inGame, setInGame, players, setPlayers }){
     const handleSubmit = (event) => {
         event.preventDefault();
-        for(let i = 0; parseInt(props.gameState.substring(0, 1))>i; i++)
+        for(let i = 0; parseInt(gameState.substring(0, 1))>i; i++)
         {
             players.push([0,event.target[i].value])
         } 
         console.log(players)
+        setInGame(true)
     }
-    switch(props.gameState){
+    if(inGame===false){
+    switch(gameState){
     case 'mainPage':
     return(
         <div>
@@ -36,11 +38,11 @@ export default function MainPage(props){
             <Form onSubmit={handleSubmit}>
                 <Form.Group className='mb-3' controlId='formBasicEmail'>
                     <Form.Label>Gracz 1:</Form.Label>
-                    <Form.Control  placeholder='Wpisz nazwe' />
+                    <Form.Control  maxLength = '15' placeholder='Wpisz nazwe' />
                 </Form.Group>
                 <Form.Group className='mb-3' >
                     <Form.Label>Gracz 2:</Form.Label>
-                    <Form.Control  placeholder='Wpisz nazwe' />
+                    <Form.Control  maxLength = '15' placeholder='Wpisz nazwe' />
                 </Form.Group>
                 <Button variant='primary' type='submit'>
                     Rozpocznij grę
@@ -55,15 +57,15 @@ export default function MainPage(props){
             <Form onSubmit={handleSubmit}>
                 <Form.Group className='mb-3' controlId='formBasicEmail'>
                     <Form.Label>Gracz 1:</Form.Label>
-                    <Form.Control  placeholder='Wpisz nazwe' />
+                    <Form.Control maxLength = '15' placeholder='Wpisz nazwe' />
                 </Form.Group>
                 <Form.Group className='mb-3' >
                     <Form.Label>Gracz 2:</Form.Label>
-                    <Form.Control  placeholder='Wpisz nazwe' />
+                    <Form.Control maxLength = '15' placeholder='Wpisz nazwe' />
                 </Form.Group>
                 <Form.Group className='mb-3' >
                     <Form.Label>Gracz 3:</Form.Label>
-                    <Form.Control  placeholder='Wpisz nazwe' />
+                    <Form.Control maxLength = '15' placeholder='Wpisz nazwe' />
                 </Form.Group>
                 <Button variant='primary' type='submit'>
                     Rozpocznij grę
@@ -78,19 +80,19 @@ export default function MainPage(props){
             <Form onSubmit={handleSubmit}>
                 <Form.Group className='mb-3' controlId='formBasicEmail'>
                     <Form.Label>Gracz 1:</Form.Label>
-                    <Form.Control  placeholder='Wpisz nazwe' />
+                    <Form.Control maxLength = '15' placeholder='Wpisz nazwe' />
                 </Form.Group>
                 <Form.Group className='mb-3' >
                     <Form.Label>Gracz 2:</Form.Label>
-                    <Form.Control  placeholder='Wpisz nazwe' />
+                    <Form.Control maxLength = '15' placeholder='Wpisz nazwe' />
                 </Form.Group>
                 <Form.Group className='mb-3' >
                     <Form.Label>Gracz 3:</Form.Label>
-                    <Form.Control  placeholder='Wpisz nazwe' />
+                    <Form.Control maxLength = '15' placeholder='Wpisz nazwe' />
                 </Form.Group>
                 <Form.Group className='mb-3' >
                     <Form.Label>Gracz 4:</Form.Label>
-                    <Form.Control  placeholder='Wpisz nazwe' />
+                    <Form.Control maxLength = '15' placeholder='Wpisz nazwe' />
                 </Form.Group>
                 <Button variant='primary' type='submit'>
                     Rozpocznij grę
@@ -105,29 +107,36 @@ export default function MainPage(props){
             <Form onSubmit={handleSubmit}>
                 <Form.Group className='mb-3' controlId='formBasicEmail'>
                     <Form.Label>Gracz 1:</Form.Label>
-                    <Form.Control  placeholder='Wpisz nazwe' />
+                    <Form.Control maxLength = '15' placeholder='Wpisz nazwe' />
                 </Form.Group>
                 <Form.Group className='mb-3' >
                     <Form.Label>Gracz 2:</Form.Label>
-                    <Form.Control  placeholder='Wpisz nazwe' />
+                    <Form.Control maxLength = '15' placeholder='Wpisz nazwe' />
                 </Form.Group>
                 <Form.Group className='mb-3' >
                     <Form.Label>Gracz 3:</Form.Label>
-                    <Form.Control  placeholder='Wpisz nazwe' />
+                    <Form.Control maxLength = '15' placeholder='Wpisz nazwe' />
                 </Form.Group>
                 <Form.Group className='mb-3' >
                     <Form.Label>Gracz 4:</Form.Label>
-                    <Form.Control  placeholder='Wpisz nazwe' />
+                    <Form.Control maxLength = '15' placeholder='Wpisz nazwe' />
                 </Form.Group>
                 <Form.Group className='mb-3' >
                     <Form.Label>Gracz 5:</Form.Label>
-                    <Form.Control  placeholder='Wpisz nazwe' />
+                    <Form.Control maxLength = '15' placeholder='Wpisz nazwe' />
                 </Form.Group>
                 <Button variant='primary' type='submit'>
                     Rozpocznij grę
                 </Button>
             </Form>
         </div>
-    );
+    )
+   
     }
+    }
+    else{
+        return(
+            <InGamePage players = {players} setPlayers={setPlayers} gameState = {gameState} setGameState={setGameState} setInGame={setInGame}/>
+        )
+}
 }

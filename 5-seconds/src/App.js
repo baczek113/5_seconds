@@ -3,13 +3,15 @@ import Header from './components/Header'
 import MainPage from './components/MainPage'
 import React, {useState} from 'react'
 function App() {
-  let [gameState, setGameState] = useState('mainPage');
+  let [gameState, setGameState] = useState('mainPage')
+  let [inGame, setInGame] = useState(false)
+  let [players, setPlayers] = useState([])
   return (
     <div>
-      <Header gameState={gameState} setGameState={setGameState}/>
-      <MainPage gameState={gameState} setGameState={setGameState}></MainPage>
+      <Header gameState={gameState} setGameState={setGameState} setInGame={setInGame} setPlayers={setPlayers}/>
+      <MainPage gameState={gameState} setGameState={setGameState} inGame={inGame} setInGame={setInGame} players={players} setPlayers={setPlayers}></MainPage>
     </div>
-  );
+  )
 }
 
 export default App;
