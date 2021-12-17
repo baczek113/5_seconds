@@ -14,7 +14,6 @@ export default function MainPage({ gameState, setGameState, inGame, setInGame, p
         { 
             setPlayers(temp)
         }
-        console.log(players)
         setInGame(true)
     }
     if(inGame===false){

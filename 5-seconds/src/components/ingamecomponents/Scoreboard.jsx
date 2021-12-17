@@ -7,14 +7,13 @@ export default function Scoreboard({players, setPlayers, gameState}){
     let [full, setFull] = useState([])
     for(let i = 0; i<parseInt(gameState.substring(0, 1)); i++)
     {
-        console.log(i, players[i])
         temp=<Row style = {{marginTop: '5px'}}>
             <Col sm>{players[i].name}</Col>
             <Col sm>{players[i].points}</Col>
         </Row>
         temp2.push(temp)
     }
-    if(temp2!==full)
+    if(full.length===0)
     {
         setFull(temp2)
     }
