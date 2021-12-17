@@ -5,10 +5,15 @@ import InGamePage from './InGamePage'
 export default function MainPage({ gameState, setGameState, inGame, setInGame, players, setPlayers }){
     const handleSubmit = (event) => {
         event.preventDefault();
-        for(let i = 0; parseInt(gameState.substring(0, 1))>i; i++)
+        let temp =[]
+        for(let i = 0; i<parseInt(gameState.substring(0, 1)); i++)
         {
-            players.push([0,event.target[i].value])
-        } 
+            temp.push({'name': event.target[i].value, 'points': 0})
+        }
+        if(players!==temp)
+        { 
+            setPlayers(temp)
+        }
         console.log(players)
         setInGame(true)
     }
