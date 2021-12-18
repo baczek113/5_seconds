@@ -10,10 +10,7 @@ export default function MainPage({ gameState, setGameState, inGame, setInGame, p
         {
             temp.push({'name': event.target[i].value, 'points': 0})
         }
-        if(players!==temp)
-        { 
-            setPlayers(temp)
-        }
+        setPlayers(temp)
         setInGame(true)
     }
     if(inGame===false){
