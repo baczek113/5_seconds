@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from 'react'
-import {Row, Col, Container, Button} from 'react-bootstrap/'
+import {Row, Col} from 'react-bootstrap/'
 
 export default function Scoreboard({players, setPlayers, gameState}){
     let [full, setFull] = useState([])
