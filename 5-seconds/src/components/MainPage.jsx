@@ -5,12 +5,10 @@ import InGamePage from './InGamePage'
 export default function MainPage({ gameState, setGameState, inGame, setInGame, players, setPlayers }){
     const handleSubmit = (event) => {
         event.preventDefault();
-        let temp =[]
-        for(let i = 0; i<parseInt(gameState.substring(0, 1)); i++)
+        for(let i = 0; parseInt(gameState.substring(0, 1))>i; i++)
         {
-            temp.push({'name': event.target[i].value, 'points': 0})
-        }
-        setPlayers(temp)
+            players.push({'name': event.target[0].value, 'points' : 0})
+        } 
         setInGame(true)
     }
     if(inGame===false){
@@ -136,8 +134,8 @@ export default function MainPage({ gameState, setGameState, inGame, setInGame, p
     }
     }
     else{
-        return(
+        return(<div>
             <InGamePage players = {players} setPlayers={setPlayers} gameState = {gameState} setGameState={setGameState} setInGame={setInGame}/>
-        )
+        </div>)
 }
 }

@@ -1,13 +1,12 @@
 import React, {useState} from 'react'
-import {Container} from 'react-bootstrap/'
+import card from './card.png'
 
 export default function MainPanel({players, setPlayers, gameState, setGameState, setInGame}){
     let [questions, setQuestions] = useState(['dupa', 'cyce', 'wadowice'])
-    let [code, setCode] = useState([])
     
     return(
         <div>
-            xd
+            <div style={{backgroundImage: 'url(${card})', width: '100%', height: '100%', backgroundRepeat:'no-repeat'}}></div>
         </div>
     )
 }
