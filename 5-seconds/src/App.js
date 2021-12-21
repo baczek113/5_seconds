@@ -6,7 +6,6 @@ function App() {
   let [gameState, setGameState] = useState('mainPage')
   let [inGame, setInGame] = useState(false)
   let [players, setPlayers] = useState([])
-  console.log('xdddd', players)
   return (
     <div>
       <Header gameState={gameState} setGameState={setGameState} setInGame={setInGame} setPlayers={setPlayers}/>
