@@ -21,7 +21,6 @@ export default function Scoreboard({players, setPlayers, gameState}){
                 <Col sm>Punkty</Col>
             </Row>
             {full.map(item=>item)}
-            <button onClick={() => setPlayers(Object.assign([], players, {0: {'points': players[0].points+1, 'name': players[0].name}}))}></button>
         </div>
     )
 }

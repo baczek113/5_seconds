@@ -7,7 +7,7 @@ export default function MainPage({ gameState, setGameState, inGame, setInGame, p
         event.preventDefault();
         for(let i = 0; parseInt(gameState.substring(0, 1))>i; i++)
         {
-            players.push({'name': event.target[0].value, 'points' : 0})
+            players.push({'name': event.target[i].value, 'points' : 0})
         } 
         setInGame(true)
     }
