@@ -6,6 +6,7 @@ export default function MainPanel({players, setPlayers, gameState, setGameState,
     let [questions, setQuestions] = useState(['1', '2', '3', '4', '5'])
     let [whichPlayer, setWhichPlayer] = useState('')
     let [question, setQuestion] = useState('')
+    let [timer, setTimer] = useState('')
     let [start, setStart] = useState(<div className="mb-2" style = {{position: 'absolute', top: '420px', left: '562px'}} onClick = {()=>{setWhichPlayer(0); setStart('')}}>
     <Button variant="primary" size="lg">
       Start Game
@@ -19,7 +20,6 @@ export default function MainPanel({players, setPlayers, gameState, setGameState,
         <p style = {{position: 'absolute', top: '450px', left: '585px', fontSize: '20px'}}>{questions[randomNumber]}</p></div>)
         temp.splice(randomNumber, 1)
         setQuestions(temp)
-        
         setTimeout(()=>{
             setQuestion(<div><Button variant="primary" size="lg" style = {{position: 'absolute', top: '400px', left: '530px'}} onClick={() => {setPlayers(Object.assign([], players, {whichPlayer: {'points': players[whichPlayer].points+1, 'name': players[whichPlayer].name}}))
             if(whichPlayer+1!==parseInt(gameState.substring(0, 1)))
@@ -37,10 +37,23 @@ export default function MainPanel({players, setPlayers, gameState, setGameState,
         }, 5000)
     }
     }, [whichPlayer])
+    useEffect(()=>{
+        setTimer(5)
+        setInterval(()=>{
+            if(timer>0)
+            {
+                setTimer(timer-1)
+            }
+            else{
+                setTimer('')
+            }
+        },1000) 
+    }, [whichPlayer])
 
     return(
         <div style = {{width: '50%', height: '100%', float: 'left'}}>
             <img src = {card} style = {{height: '634.5px', width: '430.5px', marginLeft: '400px', marginTop: '100px'}}></img>
+            {timer}
             {question}
             {start}
         </div>
