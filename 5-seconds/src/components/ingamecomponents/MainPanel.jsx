@@ -3,11 +3,12 @@ import card from './card.png'
 import {Button} from 'react-bootstrap/'
 
 export default function MainPanel({players, setPlayers, gameState, setGameState, setInGame}){
-    let [questions, setQuestions] = useState(['1', '2'])
+    let [questions, setQuestions] = useState(['Co mozna robic z twoja stara', 'nw costam', 'xdd'])
     let [whichPlayer, setWhichPlayer] = useState('')
     let [question, setQuestion] = useState('')
     let [timer, setTimer] = useState('')
     let [gameOver, setGameOver] = useState(false)
+    let [winner, setWinner] = useState('')
     let [start, setStart] = useState(<div className="mb-2" style = {{position: 'absolute', top: '420px', left: '562px'}} onClick = {()=>{setWhichPlayer(0); setStart('')}}>
     <Button variant="secondary" size="lg">
       Zacznij gre
@@ -38,7 +39,7 @@ export default function MainPanel({players, setPlayers, gameState, setGameState,
             setTimer('')
         },5000)
         setTimeout(()=>{
-            setQuestion(<div><Button variant="secondary" size="lg" style = {{position: 'absolute', top: '400px', left: '530px'}} onClick={() => {setPlayers(Object.assign([], players, {whichPlayer: {'points': players[whichPlayer].points+1, 'name': players[whichPlayer].name}}))
+            setQuestion(<div><Button variant="secondary" size="lg" style = {{position: 'absolute', top: '400px', left: '530px'}} onClick={() => {setPlayers(Object.assign([], players, {[whichPlayer]: {'points': players[whichPlayer].points+1, 'name': players[whichPlayer].name}}))
             if(whichPlayer+1!==parseInt(gameState.substring(0, 1)))
             {
                 setWhichPlayer(whichPlayer+1)
@@ -67,24 +68,22 @@ export default function MainPanel({players, setPlayers, gameState, setGameState,
         }, 5000)
     }
     }, [whichPlayer])
-    const getHighestScore = () => 
-    {
-        let arr = []
-        let max, num
+    useEffect(()=>{let arr = []
+        let max
         
-        players.points.forEach(element =>{
-            arr.push(element)
+        players.forEach(element =>{
+            arr.push(element.points)
         })
-        max = Math.max(arr)
+        max = Math.max(...arr)
         for(let i = 0; i<arr.length; i++)
         {
             if(arr[i]===max)
             {
-                num = i
+                 setWinner(i)
             }
         }
-        return(num)
-    }
+        
+    }, [gameOver])  
     if(gameOver===false)
     {
     return(
@@ -100,7 +99,7 @@ export default function MainPanel({players, setPlayers, gameState, setGameState,
     {
         return(
             <div style = {{width: '50%', height: '100%', float: 'left'}}>
-                <p style={{marginLeft:'50%', marginTop: '15%', fontSize: '40px', fontWeight: 'bold', color: 'grey'}}>Wygral:</p><br></br>
+                <p style={{marginLeft:'50%', marginTop: '15%', fontSize: '40px', fontWeight: 'bold', color: 'grey'}}>Wygral: {players[winner].name}</p><br></br>
                 <Button variant="secondary" size="lg" style = {{color: 'lightgrey', marginLeft: '60%'}} onClick = {()=>{setInGame(false); setGameState('mainPage'); setPlayers([]); setGameOver(false)}}>Wróć do strony głównej</Button>
             </div>
         )
