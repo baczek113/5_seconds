@@ -15,7 +15,7 @@ export default function Scoreboard({players, setPlayers, gameState}){
         setFull(temp)
     }, [players])
     return(
-        <div style = {{float: 'right', width: '22.5%', marginRight: '40px', marginTop: '40px', border: '1px solid #808080', borderRadius: '5px', padding: '10px'}}>
+        <div style = {{float: 'right', width: '17.5%', marginRight: '40px', marginTop: '40px', border: '1px solid #808080', borderRadius: '5px', padding: '10px', fontSize: '20px'}}>
             <Row style = {{marginTop: '5px'}}>
                 <Col sm>Gracze</Col>
                 <Col sm>Punkty</Col>

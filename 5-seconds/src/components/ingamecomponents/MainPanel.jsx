@@ -3,12 +3,12 @@ import card from './card.png'
 import {Button} from 'react-bootstrap/'
 
 export default function MainPanel({players, setPlayers, gameState, setGameState, setInGame}){
-    let [questions, setQuestions] = useState(['Co mozna robic z twoja stara', 'nw costam', 'xdd'])
+    let [questions, setQuestions] = useState([<p>Co robisz jak twój stary pijany wchodzi do pokoju</p>, <p>Co robisz jak twój stary pijany leży pod domem</p>, <p>Wymień 3 rodziaje seksownych butów</p>, <p>Wymień 3 przepisy, które łatwo złamać</p>, <p>Wymień 3 teorie spiskowe</p>, <p>Wymień 3 choroby przenoszone drogą płciową</p>])
     let [whichPlayer, setWhichPlayer] = useState('')
-    let [question, setQuestion] = useState('')
+    let [question, setQuestion] = useState(<div></div>)
     let [timer, setTimer] = useState('')
     let [gameOver, setGameOver] = useState(false)
-    let [winner, setWinner] = useState('')
+    let [winner, setWinner] = useState(0)
     let [start, setStart] = useState(<div className="mb-2" style = {{position: 'absolute', top: '420px', left: '562px'}} onClick = {()=>{setWhichPlayer(0); setStart('')}}>
     <Button variant="secondary" size="lg">
       Zacznij gre
@@ -18,8 +18,8 @@ export default function MainPanel({players, setPlayers, gameState, setGameState,
         if(start===''){
         let temp = questions
         let randomNumber = Math.floor(Math.random()*(questions.length))
-        setQuestion(<div><p style = {{position: 'absolute', top: '320px', left: '560px', fontSize: '20px'}}>Teraz kolej:<br></br>{players[whichPlayer].name}</p>
-        <p style = {{position: 'absolute', top: '450px', left: '590px', fontSize: '35px', fontWeight: 'bold'}}>{questions[randomNumber]}</p></div>)
+        setQuestion(<div><div style = {{position: 'absolute', top: '320px', left: '570px', fontSize: '20px', textAlign: 'center'}}>Teraz kolej:<br></br><p style = {{color: 'grey', fontWeight: 'bold'}}>{players[whichPlayer].name}</p></div>
+        <div style = {{position: 'absolute', top: '430px', left: '430px', fontSize: '35px', fontWeight: '2', textAlign: 'center', width: '360px', height: '300px'}}>{questions[randomNumber]}</div></div>)
         temp.splice(randomNumber, 1)
         setQuestions(temp)
         setTimer(5)
@@ -39,7 +39,7 @@ export default function MainPanel({players, setPlayers, gameState, setGameState,
             setTimer('')
         },5000)
         setTimeout(()=>{
-            setQuestion(<div><Button variant="secondary" size="lg" style = {{position: 'absolute', top: '400px', left: '530px'}} onClick={() => {setPlayers(Object.assign([], players, {[whichPlayer]: {'points': players[whichPlayer].points+1, 'name': players[whichPlayer].name}}))
+            setQuestion(<div><Button variant="secondary" size="lg" style = {{position: 'absolute', top: '400px', left: '540px'}} onClick={() => {setPlayers(Object.assign([], players, {[whichPlayer]: {'points': players[whichPlayer].points+1, 'name': players[whichPlayer].name}}))
             if(whichPlayer+1!==parseInt(gameState.substring(0, 1)))
             {
                 setWhichPlayer(whichPlayer+1)
@@ -68,7 +68,8 @@ export default function MainPanel({players, setPlayers, gameState, setGameState,
         }, 5000)
     }
     }, [whichPlayer])
-    useEffect(()=>{let arr = []
+    useEffect(()=>{
+        let arr = []
         let max
         
         players.forEach(element =>{
@@ -89,7 +90,7 @@ export default function MainPanel({players, setPlayers, gameState, setGameState,
     return(
         <div style = {{width: '50%', height: '100%', float: 'left'}}>
             <img src = {card} style = {{height: '634.5px', width: '430.5px', marginLeft: '400px', marginTop: '100px'}}></img>
-            <div style = {{position: 'absolute', top: '270px', left: '600px', fontSize: '35px', fontWeight: 'bold', color: 'grey'}}>{timer}</div>
+            <div style = {{position: 'absolute', top: '270px', left: '610px', fontSize: '35px', fontWeight: 'bold', color: 'grey'}}>{timer}</div>
             {question}
             {start}
         </div>
@@ -99,7 +100,7 @@ export default function MainPanel({players, setPlayers, gameState, setGameState,
     {
         return(
             <div style = {{width: '50%', height: '100%', float: 'left'}}>
-                <p style={{marginLeft:'50%', marginTop: '15%', fontSize: '40px', fontWeight: 'bold', color: 'grey'}}>Wygral: {players[winner].name}</p><br></br>
+                <div style={{marginLeft:'38%', marginTop: '15%', fontSize: '40px', fontWeight: 'bold', color: 'grey', textAlign: 'center'}}>Wygral: {players[winner].name}</div><br></br>
                 <Button variant="secondary" size="lg" style = {{color: 'lightgrey', marginLeft: '60%'}} onClick = {()=>{setInGame(false); setGameState('mainPage'); setPlayers([]); setGameOver(false)}}>Wróć do strony głównej</Button>
             </div>
         )
